@@ -1,135 +1,116 @@
-# Turborepo starter
+# FE Pixel Gym 🎯
 
-This Turborepo starter is maintained by the Turborepo core team.
+> 像素级设计还原练习 - 前端设计体操房
 
-## Using this example
-
-Run the following command:
-
-```sh
-npx create-turbo@latest
-```
-
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## 项目结构
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+pixel-gym/
+├── package.json              # 根目录配置 (Turbo, pnpm)
+├── pnpm-workspace.yaml       # 定义工作区
+├── turbo.json                # Turbo 管道配置
+├── apps/                     # 【存放练习项目】
+│   ├── 01-linear-landing     # 示例：Linear 首页还原
+│   ├── 02-dub-dashboard      # 示例：Dub 后台还原
+│   └── 03-raycast-page       # 示例：Raycast 页面还原
+└── packages/                 # 【存放公共代码】
+    ├── ui/                   # ★ 共享的 UI 组件库
+    │   ├── src/
+    │   │   ├── components/ui/  # Shadcn 风格组件
+    │   │   └── lib/           # 工具函数 (cn)
+    │   └── tailwind.config.ts # 基础 Tailwind 配置
+    ├── config/               # 共享配置
+    │   ├── eslint/           # ESLint 配置
+    │   └── typescript/       # TypeScript 配置
+    └── hooks/                # 常用 React Hooks
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## 快速开始
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+### 安装依赖
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```bash
+pnpm install
 ```
 
-### Develop
+### 开发模式
 
-To develop all apps and packages, run the following command:
+```bash
+# 运行所有应用
+pnpm dev
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+# 运行特定应用
+cd apps/01-linear-landing
+pnpm dev
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### 构建
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+```bash
+pnpm build
 ```
 
-### Remote Caching
+### 类型检查
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+```bash
+pnpm type-check
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### 代码检查
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+```bash
+pnpm lint
 ```
 
-## Useful Links
+## 添加新的练习项目
 
-Learn more about the power of Turborepo:
+1. 在 `apps/` 目录下创建新文件夹
+2. 参考 `01-linear-landing` 的结构
+3. 在 `package.json` 中添加依赖：
+   - `@repo/ui` - 共享组件
+   - `@repo/config` - 配置
+   - `@repo/hooks` - Hooks (可选)
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+## Packages 说明
+
+### @repo/ui
+
+共享的 UI 组件库，基于 Shadcn/ui 风格。包含：
+
+- Button, Card 等基础组件
+- `cn()` 工具函数用于类名合并
+- Tailwind CSS 配置
+
+### @repo/config
+
+统一的代码规范配置：
+
+- ESLint 配置
+- TypeScript 配置
+
+### @repo/hooks
+
+常用的 React Hooks：
+
+- `useScroll` - 滚动位置监听
+- 更多 Hooks 待添加...
+
+## 技术栈
+
+- ⚡️ [Turborepo](https://turbo.build/) - Monorepo 管理
+- 📦 [pnpm](https://pnpm.io/) - 包管理器
+- ⚛️ [React 18](https://react.dev/) - UI 框架
+- 🎨 [Next.js 15](https://nextjs.org/) - React 框架
+- 💨 [Tailwind CSS](https://tailwindcss.com/) - CSS 框架
+- 🎯 [TypeScript](https://www.typescriptlang.org/) - 类型安全
+
+## 开发规范
+
+- 使用 TypeScript，避免使用 `any` 类型
+- 遵循 ESLint 规则
+- 使用 Tailwind CSS 进行样式开发
+- 组件优先从 `@repo/ui` 引入
+
+## License
+
+MIT

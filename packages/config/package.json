@@ -1,0 +1,23 @@
+{
+  "name": "@repo/config",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "eslint",
+    "typescript"
+  ],
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/eslint": "^8",
+    "typescript": "^5",
+    "eslint": "^8",
+    "@next/eslint-plugin-next": "^15",
+    "eslint-config-prettier": "^9",
+    "eslint-plugin-react": "^7",
+    "eslint-plugin-react-hooks": "^4",
+    "eslint-plugin-turbo": "^2",
+    "eslint-plugin-only-warn": "^1",
+    "typescript-eslint": "^8"
+  }
+}
+

@@ -1,28 +1,33 @@
-# FE Pixel Gym 🎯
+# FE Pixel Gym �️
 
-> 像素级设计还原练习 - 前端设计体操房
+> 前端手写代码练习场 - 在 `vibe coding` 的时代，坚持古法编程 💪
+
+## 为什么？
+
+在 AI 辅助编程盛行的时代，我相信**手写代码**对于夯实基础的价值。
+
+这个 repo 几乎纯手写实现，用于练习和巩固前端核心技能 😤
+
+## 项目列表
+
+| 项目 | 简介 |
+|------|------|
+| [Weather WebApp](./packages/weather-webapp/README.md) | 响应式天气预报应用 |
 
 ## 项目结构
 
 ```
-pixel-gym/
-├── package.json              # 根目录配置 (Turbo, pnpm)
-├── pnpm-workspace.yaml       # 定义工作区
-├── turbo.json                # Turbo 管道配置
-├── apps/                     # 【存放练习项目】
-│   ├── 01-linear-landing     # 示例：Linear 首页还原
-│   ├── 02-dub-dashboard      # 示例：Dub 后台还原
-│   └── 03-raycast-page       # 示例：Raycast 页面还原
-└── packages/                 # 【存放公共代码】
-    ├── ui/                   # ★ 共享的 UI 组件库
-    │   ├── src/
-    │   │   ├── components/ui/  # Shadcn 风格组件
-    │   │   └── lib/           # 工具函数 (cn)
-    │   └── tailwind.config.ts # 基础 Tailwind 配置
-    ├── config/               # 共享配置
-    │   ├── eslint/           # ESLint 配置
-    │   └── typescript/       # TypeScript 配置
-    └── hooks/                # 常用 React Hooks
+fe-pixel-gym/
+├── apps/                     # 复杂应用项目
+├── packages/                 # 练习项目 & 公共代码
+│   ├── weather-webapp/       # 天气预报应用
+│   ├── ui/                   # 共享 UI 组件库
+│   ├── config/               # 共享配置
+│   ├── eslint-config/        # ESLint 配置
+│   ├── typescript-config/    # TypeScript 配置
+│   └── hooks/                # 常用 React Hooks
+├── pnpm-workspace.yaml       # pnpm 工作区配置
+└── turbo.json                # Turborepo 配置
 ```
 
 ## 快速开始
@@ -36,12 +41,11 @@ pnpm install
 ### 开发模式
 
 ```bash
-# 运行所有应用
+# 运行所有项目
 pnpm dev
 
-# 运行特定应用
-cd apps/01-linear-landing
-pnpm dev
+# 运行特定项目
+pnpm --filter @repo/weather-webapp dev
 ```
 
 ### 构建
@@ -62,54 +66,20 @@ pnpm type-check
 pnpm lint
 ```
 
-## 添加新的练习项目
-
-1. 在 `apps/` 目录下创建新文件夹
-2. 参考 `01-linear-landing` 的结构
-3. 在 `package.json` 中添加依赖：
-   - `@repo/ui` - 共享组件
-   - `@repo/config` - 配置
-   - `@repo/hooks` - Hooks (可选)
-
-## Packages 说明
-
-### @repo/ui
-
-共享的 UI 组件库，基于 Shadcn/ui 风格。包含：
-
-- Button, Card 等基础组件
-- `cn()` 工具函数用于类名合并
-- Tailwind CSS 配置
-
-### @repo/config
-
-统一的代码规范配置：
-
-- ESLint 配置
-- TypeScript 配置
-
-### @repo/hooks
-
-常用的 React Hooks：
-
-- `useScroll` - 滚动位置监听
-- 更多 Hooks 待添加...
-
 ## 技术栈
 
 - ⚡️ [Turborepo](https://turbo.build/) - Monorepo 管理
 - 📦 [pnpm](https://pnpm.io/) - 包管理器
-- ⚛️ [React 18](https://react.dev/) - UI 框架
-- 🎨 [Next.js 15](https://nextjs.org/) - React 框架
-- 💨 [Tailwind CSS](https://tailwindcss.com/) - CSS 框架
+- ⚛️ [React](https://react.dev/) - UI 框架
+- 🎨 [Tailwind CSS](https://tailwindcss.com/) - CSS 框架
 - 🎯 [TypeScript](https://www.typescriptlang.org/) - 类型安全
+- ⚡ [Vite](https://vite.dev/) - 构建工具
 
 ## 开发规范
 
 - 使用 TypeScript，避免使用 `any` 类型
 - 遵循 ESLint 规则
-- 使用 Tailwind CSS 进行样式开发
-- 组件优先从 `@repo/ui` 引入
+- 尽量手写代码，减少 AI 依赖 🔧
 
 ## License
 

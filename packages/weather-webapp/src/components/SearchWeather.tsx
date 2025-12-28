@@ -1,9 +1,23 @@
 import { Button, Input } from "./ui"
 import { Search } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import useCityGeoposition from "../hook/useCityGeoposition"
 
 const SearchWeather = () => {
-  const [city, setCity] = useState('')
+  const [cityInput, setCityInput] = useState('')
+  const [debouncedCity, setDebouncedCity] = useState('')
+  const cityList = useCityGeoposition(debouncedCity)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedCity(cityInput.trim())
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [cityInput])
+
+  useEffect(() => {
+    console.log(cityList)
+  }, [cityList])
 
   return (
     <div className="flex items-center gap-2">
@@ -12,8 +26,8 @@ const SearchWeather = () => {
         <Input
           placeholder="Search for a place..."
           className="w-64 h-10 pl-8 text-white placeholder:text-neutral-300 bg-neutral-800 border-none rounded-full"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
+          value={cityInput}
+          onChange={(e) => setCityInput(e.target.value)}
         />
       </div>
       <Button onClick={() => { }} className="bg-blue-700 mx-2">Search</Button>

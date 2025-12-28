@@ -32,8 +32,8 @@ const DailyForecast = ({ data }: { data: DailyData }) => {
                 />
               </div>
               <div className="flex gap-3 text-base font-bold">
-                <span>{max}°</span>
-                <span className="opacity-50 font-medium">{min}°</span>
+                <span>{max}{" °"}</span>
+                <span className="opacity-50 font-medium">{min}{" °"}</span>
               </div>
             </div>
           );
